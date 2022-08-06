@@ -142,7 +142,7 @@
       .channels:first-child {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        margin-bottom: 20rem;
+        margin-bottom: 15rem;
 
         .icon {
           position: relative;
@@ -150,7 +150,7 @@
           img {
             width: 500px;
             position: absolute;
-            top: -55%;
+            top: -100%;
             right: 3%;
             z-index: 9;
           }
@@ -159,7 +159,7 @@
             width: 350px;
             height: 350px;
             position: absolute;
-            top: -33%;
+            top: -70%;
             right: 10%;
           }
         }

@@ -5,6 +5,7 @@
   import HomeView from "$lib/view/HomeView.svelte";
 
   export let data;
+  console.log(data, 'data');
   export let background;
 
   const gotoAbout = () => {
@@ -17,11 +18,10 @@
   <HomeView />
   <div class="container">
     <div class="title">
-      <h1>MOZAHOPE.</h1>
+      <h1>{data?.title}</h1>
     </div>
-    <!-- <span>Server discord untuk <u>mahasiswa</u></span> -->
     <div class="subs">
-      <div>Server discord untuk</div>
+      <div>{@html data?.description}</div>
       <div class="scroller">
         <span>
           Mahasiswa <br>
@@ -94,12 +94,6 @@
         }
       }
 
-      // span {
-      //   color: $textPrimary;
-      //   font-size: 20px;
-      //   margin-bottom: 0.75rem;
-      // }
-
       .subs {
         color: $textPrimary;
         font-size: 20px;
@@ -111,12 +105,12 @@
         margin-left: 6rem;
 
         .scroller {
-          // border: 1px solid red;
           height: 2rem;
           line-height: 2rem;
           position: relative;
           overflow: hidden;
           width: 15rem;
+          margin-bottom: 1rem;
         }
 
         .scroller > span {
