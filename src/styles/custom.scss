@@ -1,0 +1,71 @@
+$primaryColor: #5865f2;
+$secondColor: #2c2f33;
+$secondColorLight: #42454a;
+$textPrimary: #ffffff;
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $secondColor;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4c535a;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Big Shoulders Display", cursive;
+}
+
+.space {
+  height: 8.5rem;
+}
+
+.space-bot {
+  height: 2.5rem;
+}
+
+.btn-secondary {
+  background-color: $secondColor;
+  border: 1px solid $secondColor;
+}
+
+.btn-secondary:hover {
+  background-color: #111111;
+  border: 1px solid #111111;
+}
+
+.btn-contact {
+  background-color: $textPrimary;
+  border: 1px solid $textPrimary;
+}
+
+.btn-contact:hover {
+  background-color: $secondColor;
+  border: 1px solid $secondColor;
+}
+
+.card {
+  border: unset;
+}
+
+.circle-white {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: white;
+}
+
+.circle-yellow {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #fedd61;
+}
