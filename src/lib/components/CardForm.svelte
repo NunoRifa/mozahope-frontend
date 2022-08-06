@@ -1,5 +1,6 @@
 <script>
   import RadioButton from "$lib/components/RadioButton.svelte";
+  import { addBottomToast } from '$lib/stores/Toast';
   import Ticket from "$lib/services/Ticket";
 
   let first_name = "";
@@ -8,12 +9,10 @@
   let phone = "";
   let option = "";
   let message = "";
-  let alert = false;
   let submit = false;
 
   const test = (e) => {
     option = e.detail;
-    console.log(option);
   }
 
   async function formSubmit() {
@@ -26,29 +25,23 @@
       option,
       message
     );
-    alert = true;
     submit = false;
+
+    addBottomToast({
+      title: 'Sukses',
+      headMessage: 'Ticket terkirim!',
+      message: 'Page akan ter-Reload dalam ',
+      timeout: 5000
+    });
 
     setTimeout(() => {
       location.reload();
-    }, 3000);
+    }, 5000);
   }
 </script>
 
 <div class="card-form">
   <div class="card">
-    {#if alert !== false}
-      <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>Holy guacamole!</strong> You should check in on some of those
-        fields below.
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="alert"
-          aria-label="Close"
-        />
-      </div>
-    {/if}
     <form action="" method="post" on:submit|preventDefault={formSubmit}>
       <div class="full-name">
         <div>

@@ -1,5 +1,6 @@
 <script>
   import LoadingPage from "$lib/utils/LoadingPage.svelte";
+  import FormToast from "$lib/dialog/FormToast.svelte";
   import { onMount } from "svelte";
 
   let loading = false;
@@ -15,6 +16,7 @@
   {:else}
     <slot />
   {/if}
+  <FormToast />
 </main>
 
 <style lang="scss" global>
