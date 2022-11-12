@@ -13,20 +13,23 @@
 <style lang="scss">
   .home-view {
     .circle-blue {
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
       position: absolute;
-      min-width: 80rem;
-      top: -10%;
-      left: -45%;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
       z-index: 1;
+    }
 
-      @media screen and (max-width: 1366px) {
-        left: -50%;
-      }
-
-      @media screen and (min-width: 2560px) {
-        top: -10%;
-        left: -16%;
-      }
+    .circle-blue > img {
+      margin-left: -50%;
+      margin-top: -5rem;
+      height: 150vh;
+      width: 100vw;
+      object-fit: contain;
     }
 
     .computer-man {

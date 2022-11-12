@@ -5,7 +5,6 @@
   import HomeView from "$lib/view/HomeView.svelte";
 
   export let data;
-  console.log(data, 'data');
   export let background;
 
   const gotoAbout = () => {
@@ -24,12 +23,7 @@
       <div>{@html data?.description}</div>
       <div class="scroller">
         <span>
-          Mahasiswa <br>
-          Nugas <br>
-          Healing <br>
-          Mabar <br>
-          Yang Kesepian <br>
-          Yang Butuh Circle
+          {@html data?.image_description}
         </span>
       </div>
     </div>
@@ -57,6 +51,30 @@
     }
     75% {
       top: -10rem;
+    }
+  }
+
+  @keyframes xwidth {
+    0% {
+      width: 7.2rem;
+    }
+    15% {
+      width: 4.2rem;
+    }
+    30% {
+      width: 5rem;
+    }
+    45% {
+      width: 4.5rem;
+    }
+    60% {
+      width: 10rem;
+    }
+    75% {
+      width: 11.5rem;
+    }
+    100% {
+      width: 7.2rem;
     }
   }
 
@@ -102,15 +120,16 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        margin-left: 6rem;
 
         .scroller {
           height: 2rem;
           line-height: 2rem;
           position: relative;
           overflow: hidden;
-          width: 15rem;
+          // width: 12rem;
           margin-bottom: 1rem;
+          animation: xwidth 6s infinite;
+          border-bottom: 2px solid $textPrimary;
         }
 
         .scroller > span {
@@ -121,7 +140,7 @@
       }
 
       .subs > div {
-        margin-right: .5rem;
+        margin-right: 0.5rem;
       }
 
       .btn-start {

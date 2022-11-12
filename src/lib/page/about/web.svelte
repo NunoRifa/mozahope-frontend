@@ -32,7 +32,7 @@
   <div class="content">
     <div class="container">
       {#each data as item}
-        {#if item?.option === 'left'}
+        {#if item?.option === "left"}
           <div class="channels">
             <div class="card">
               <div class="title">{item?.title}</div>
@@ -66,6 +66,12 @@
 <Footer />
 
 <style lang="scss">
+  @media (min-width: 1440px) {
+    .container {
+      max-width: 1440px;
+    }
+  }
+
   #about {
     background: $primaryColor;
 
