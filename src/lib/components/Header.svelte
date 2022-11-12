@@ -1,8 +1,10 @@
 <script>
   import { goto } from "$app/navigation";
   import { page } from "$app/stores";
+  import MediaQuery from "$lib/utils/MediaQuery.svelte";
 
   let changeBg = true;
+  let show = false;
   let PosY = 0;
 
   let menu = [
@@ -26,8 +28,6 @@
       name: "Ticket",
       path: "/ticket",
     },
-  
-    
   ];
 
   const gotoIndex = () => {
@@ -40,34 +40,217 @@
 </script>
 
 <svelte:window bind:scrollY={PosY} />
-<div class="header {changeBg && PosY > 0 ? 'change' : ''}">
-  <div class="container">
-    <div class="logo" on:click={gotoIndex}>
-      <img src="/icon/discord.png" alt="logo" />
-      <h2>Mozahope</h2>
-    </div>
-    <div class="menu">
-      <ul class="navbar">
-        {#each menu as item, i}
-          <li class="item">
-            <a href={item?.path} class:active={$page.path === item?.path}
-              >{item?.name}</a
-            >
+<MediaQuery query="(max-width: 768px)" let:matches>
+  {#if matches}
+    <div class="header mini">
+      <div class="container">
+        <div class="logo" on:click={gotoIndex}>
+          <img src="/icon/discord.png" alt="logo" />
+          <h2>Mozahope</h2>
+        </div>
+        <button
+          type="button"
+          class="hamburger {show ? 'active' : ''}"
+          on:click={() => {
+            show = !show;
+          }}
+        >
+          <span class="line" />
+          <span class="line" />
+          <span class="line" />
+        </button>
+      </div>
+      <div
+        class="menu {show !== false ? 'active' : ''}"
+        on:click={() => {
+          show = !show;
+        }}
+      />
+      <div class="slide-menu {show !== false ? 'active' : ''}">
+        <ul>
+          {#each menu as item, i}
+            <li class:active={$page.path === item?.path}>
+              <a href={item?.path}>{item?.name}</a>
+            </li>
+          {/each}
+          <li on:click={gotoLogin}>
+            <a href=""> Login </a>
           </li>
-        {/each}
-        <li class="item" on:click={gotoLogin}>
-          <a href=""> Login </a>
-        </li>
-      </ul>
+        </ul>
+      </div>
     </div>
-  </div>
-</div>
+  {:else}
+    <div class="header {changeBg && PosY > 0 ? 'change' : ''}">
+      <div class="container">
+        <div class="logo" on:click={gotoIndex}>
+          <img src="/icon/discord.png" alt="logo" />
+          <h2>Mozahope</h2>
+        </div>
+        <div class="menu">
+          <ul class="navbar">
+            {#each menu as item, i}
+              <li class="item">
+                <a href={item?.path} class:active={$page.path === item?.path}
+                  >{item?.name}</a
+                >
+              </li>
+            {/each}
+            <li class="item" on:click={gotoLogin}>
+              <a href=""> Login </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  {/if}
+</MediaQuery>
 
 <style lang="scss">
+  .header.mini {
+    background: $primaryColor;
+    padding: 0.25rem;
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      .logo {
+        img {
+          width: 50px;
+          height: 50px;
+        }
+      }
+
+      .hamburger {
+        background: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+
+        .line {
+          display: block;
+          width: 40px;
+          height: 4px;
+          background: $textPrimary;
+          margin-block: 6px;
+          border-radius: 5px;
+          transition: transform 0.5s;
+          opacity: 0.25s;
+        }
+      }
+
+      .hamburger.active {
+        .line:nth-child(1) {
+          transform: translateY(10px) rotate(45deg);
+        }
+
+        .line:nth-child(2) {
+          opacity: 0;
+        }
+
+        .line:nth-child(3) {
+          transform: translateY(-11px) rotate(-45deg);
+        }
+      }
+    }
+
+    .menu {
+      position: absolute;
+      background: #000000;
+      height: 0;
+      left: 0;
+      right: 0;
+      top: 3.65rem;
+      opacity: 80%;
+      transition: height 0.5s;
+    }
+
+    .menu.active {
+      height: 100vh;
+    }
+
+    .slide-menu {
+      position: absolute;
+      background: $secondColorLight;
+      height: 0;
+      top: 3.6rem;
+      left: 12rem;
+      right: 0;
+      transition: height 0.5s;
+      overflow: hidden;
+      border-radius: 0 0 25px 25px;
+
+      ul {
+        list-style-type: none;
+        margin-bottom: unset;
+        padding-left: unset;
+        margin: 0.75rem;
+
+        li {
+          padding: 0.25rem 0.5rem;
+        }
+
+        li.active {
+          background: $primaryColor;
+          padding: 0.25rem 0.5rem;
+          border-radius: 5px;
+        }
+
+        a {
+          font-size: 20px;
+          font-weight: 600;
+          color: $textPrimary;
+          text-decoration: none;
+        }
+      }
+    }
+
+    .slide-menu.active {
+      height: 38vh;
+    }
+
+    /* COMM SEMENTARA AJA DULU */
+    // .slide-menu {
+    //   position: absolute;
+    //   left: 12rem;
+    //   right: 0;
+    //   top: 3.6rem;
+    //   background: $secondColorLight;
+    //   padding: 0.75rem;
+    //   border-radius: 0 0 25px 25px;
+    //   z-index: 90;
+
+    //   ul {
+    //     list-style-type: none;
+    //     margin-bottom: unset;
+    //     padding-left: unset;
+
+    //     li {
+    //       padding: 0.25rem 0.5rem;
+    //     }
+
+    //     li.active {
+    //       background: $primaryColor;
+    //       padding: 0.25rem 0.5rem;
+    //       border-radius: 5px;
+    //     }
+
+    //     a {
+    //       font-size: 20px;
+    //       font-weight: 600;
+    //       color: $textPrimary;
+    //       text-decoration: none;
+    //     }
+    //   }
+    // }
+  }
+
   .header.change {
     background: $primaryColor;
     padding: 0.75rem 0;
-    box-shadow: 0 3px 16px rgba($color: #000000, $alpha: .16);
+    box-shadow: 0 3px 16px rgba($color: #000000, $alpha: 0.16);
     z-index: 999;
   }
 
