@@ -74,6 +74,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    flex-wrap: wrap;
     color: $textPrimary;
 
     input[type="radio"] {

@@ -4,7 +4,7 @@
 
 <div class="card-ticket">
   <div class="card slide-in-bottom">
-    <div class="images slide-in-right-2">
+    <div class="images slide-in-bottom">
       <img src="/placeholder/placeholder-ticket.png" alt="Component" />
     </div>
     <CardForm />
@@ -29,6 +29,15 @@
 
         img {
           transform: scaleX(-1);
+        }
+      }
+
+      @media (max-width: 425px) {
+        img {
+          width: 100%;
+          height: 350px;
+          object-fit: cover;
+          margin: 2em 0;
         }
       }
     }

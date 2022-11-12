@@ -2,6 +2,7 @@
   import { goto } from "$app/navigation";
   import { page } from "$app/stores";
   import MediaQuery from "$lib/utils/MediaQuery.svelte";
+  import { each } from "svelte/internal";
 
   let changeBg = true;
   let show = false;
@@ -109,6 +110,7 @@
   .header.mini {
     background: $primaryColor;
     padding: 0.25rem;
+    box-shadow: 0 3px 16px rgba($color: #000000, $alpha: 0.16);
 
     .container {
       display: flex;
@@ -199,6 +201,7 @@
         }
 
         a {
+          display: block;
           font-size: 20px;
           font-weight: 600;
           color: $textPrimary;
@@ -210,41 +213,6 @@
     .slide-menu.active {
       height: 38vh;
     }
-
-    /* COMM SEMENTARA AJA DULU */
-    // .slide-menu {
-    //   position: absolute;
-    //   left: 12rem;
-    //   right: 0;
-    //   top: 3.6rem;
-    //   background: $secondColorLight;
-    //   padding: 0.75rem;
-    //   border-radius: 0 0 25px 25px;
-    //   z-index: 90;
-
-    //   ul {
-    //     list-style-type: none;
-    //     margin-bottom: unset;
-    //     padding-left: unset;
-
-    //     li {
-    //       padding: 0.25rem 0.5rem;
-    //     }
-
-    //     li.active {
-    //       background: $primaryColor;
-    //       padding: 0.25rem 0.5rem;
-    //       border-radius: 5px;
-    //     }
-
-    //     a {
-    //       font-size: 20px;
-    //       font-weight: 600;
-    //       color: $textPrimary;
-    //       text-decoration: none;
-    //     }
-    //   }
-    // }
   }
 
   .header.change {
