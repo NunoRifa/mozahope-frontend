@@ -92,6 +92,12 @@
         object-fit: cover;
         margin-bottom: 5em;
       }
+
+      @media (max-width: 375px) {
+        .images img {
+          width: 100%;
+        }
+      }
     }
   }
 </style>
