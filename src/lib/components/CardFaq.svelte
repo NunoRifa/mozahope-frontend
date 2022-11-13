@@ -1,65 +1,70 @@
 <script>
-    export let item;
+  export let item;
 </script>
 
-<div class="card-faq w-100">
-  <div class="card slide-in-bottom">
-    <div class="head">
-      <div class="icon me-2">+</div>
+<div class="card w-100">
+  <div class="sub">
+    <div class="icon">+</div>
+    <div class="content">
       <div class="title">{item?.question}</div>
-    </div>
-    <div class="body">
-      {@html item?.answer}
+      <div class="answer">
+        {@html item?.answer}
+      </div>
     </div>
   </div>
 </div>
 
 <style lang="scss">
-  .card-faq {
-    .card {
-      margin-top: 1.25rem;
-      border-radius: 12px;
-      border: unset;
-      padding: 0.75rem 1rem;
-      max-height: 3.5rem;
-      overflow: hidden;
-      transition: 0.5s;
+  .card {
+    position: relative;
+    margin-bottom: 0.75em;
+    padding: 0.75em 0.5em;
+    border-radius: 16px;
+    max-height: 3em;
+    overflow: hidden;
+    transition: 0.5s;
+    z-index: 9;
 
-      .head {
+    .sub {
+      display: flex;
+      gap: 0.5em;
+
+      .icon {
+        font-size: 18px;
+        font-weight: 600;
+        transition: 0.75s;
+      }
+
+      .content {
         display: flex;
-        flex-direction: row;
-        align-items: center;
-
-        .icon {
-          font-size: 22px;
-          font-weight: 600;
-          transition: 0.75s;
-        }
+        flex-direction: column;
+        align-items: flex-start;
 
         .title {
           font-size: 16px;
           font-weight: 500;
+          display: -webkit-box;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+
+        .answer {
+          margin-top: 0.5rem;
+          font-size: 14px;
         }
       }
-
-      .body {
-        margin-top: 0.5rem;
-        margin-left: 1.5rem;
-        font-size: 14px;
-      }
     }
+  }
 
-    .card:hover {
-      max-height: 12rem;
+  .card:hover {
+    max-height: 12rem;
 
-      .icon {
-        transform: rotate(225deg);
-      }
-
-      .body {
-        max-height: 12rem;
-        overflow-y: scroll;
-      }
+    .sub .content .title {
+      display: -webkit-box;
+      -webkit-line-clamp: initial;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
   }
 </style>
